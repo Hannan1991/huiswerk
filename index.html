@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulier met Extra Gegevens</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Toon of verberg formulier
+            $("#toggleForm").click(function() {
+                $("#form").toggle();
+            });
+
+            // Verzend het formulier
+            $("#submitForm").click(function(event) {
+                event.preventDefault();  // Voorkom dat het formulier op de traditionele manier wordt verzonden
+                var naam = $("#naam").val();
+                var leeftijd = $("#leeftijd").val();
+                var email = $("#email").val();
+                var opmerkingen = $("#opmerkingen").val();
+
+                // Toon de ingevulde gegevens
+                alert("Formulier verzonden! \nNaam: " + naam + "\nLeeftijd: " + leeftijd + "\nE-mail: " + email + "\nOpmerkingen: " + opmerkingen);
+                
+                // Reset formulier na verzenden
+                $("#form")[0].reset();
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Knop om het formulier te tonen of te verbergen -->
+    <button id="toggleForm">Formulier tonen/verbergen</button>
+
+    <!-- Formulier -->
+    <form id="form" style="display:none;">
+        <h2>Ingevulde Gegevens</h2>
+        
+        <label for="naam">Naam:</label>
+        <input type="text" id="naam" name="naam" required><br><br>
+
+        <label for="leeftijd">Leeftijd:</label>
+        <input type="number" id="leeftijd" name="leeftijd" required><br><br>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="opmerkingen">Opmerkingen:</label><br>
+        <textarea id="opmerkingen" name="opmerkingen" rows="4" cols="50"></textarea><br><br>
+
+        <button type="button" id="submitForm">Verstuur Gegevens</button>
+    </form>
+
+</body>
+</html>
